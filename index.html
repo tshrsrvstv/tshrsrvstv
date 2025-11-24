@@ -1,23 +1,18 @@
 <!doctype html>
 <!--
-  Tushar Srivastava - Modern CV Website (single-file)
-  - Responsive, print-friendly, semantic HTML
-  - Embedded CSS (no external deps except Google Fonts)
-  - Smooth scrolling, accessible, easy to customize
+  Tushar Srivastava - Modern CV Website (single-file) - Responsive improvements
+  - Responsive header that stacks on small screens
+  - Avatar fixed (no overflow slice) and scales with contain/cover options
+  - Accessible, print-friendly preserved
+  - Avatar src references uploaded image path
 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Tushar Srivastava — Lead Software Engineer</title>
-
-  <!-- Google Font (external dependency is optional) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
   <style>
-    /* ==========================
-       Base / Reset
-       ========================== */
     :root{
       --bg:#0f1724;
       --card:#0b1220;
@@ -42,34 +37,45 @@
       font-size:15px;
     }
 
-    /* Layout */
     .container{max-width:var(--max-width);margin:28px auto;padding:18px}
-    header{display:flex;gap:20px;align-items:center}
 
-    .avatar{width:120px;height:120px;border-radius:18px;background:linear-gradient(135deg,#123 0%, #234 100%);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:28px;color:var(--card);box-shadow:0 6px 24px rgba(0,0,0,0.6); overflow: hidden;}
+    /* Header layout - flexible for mobile */
+    header{display:flex;gap:20px;align-items:center;justify-content:space-between}
 
-    .avatar img {height: 100%; width: 100% object-fit: contain;}
+    .left-header{display:flex;gap:16px;align-items:center;flex:1;min-width:0}
 
-    .intro{flex:1}
-    h1{margin:0;font-size:28px;letter-spacing:-0.2px}
-    .sub{color:var(--muted);margin-top:6px}
+    .avatar{
+      width:120px;height:120px;border-radius:18px;
+      background:linear-gradient(135deg,#123 0%, #234 100%);
+      display:flex;align-items:center;justify-content:center;font-weight:700;font-size:28px;color:var(--card);
+      box-shadow:0 6px 24px rgba(0,0,0,0.6);
+      overflow:hidden;flex-shrink:0
+    }
+
+    /* image scales to fit inside avatar without cropping (contain) */
+    .avatar img{width:100%;height:100%;object-fit:contain;display:block}
+
+    .intro{flex:1;min-width:0}
+    h1{margin:0;font-size:28px;letter-spacing:-0.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .sub{color:var(--muted);margin-top:6px;white-space:normal}
 
     .contact{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
     .pill{background:var(--glass);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:600;font-size:14px}
 
-    nav{display:flex;gap:12px;margin-top:18px}
+    nav{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
     nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
     nav a:hover{color:var(--accent);background:rgba(45,212,191,0.06)}
 
+    .header-actions{display:flex;flex-direction:column;gap:10px;margin-left:14px}
+    .header-actions .row{display:flex;gap:8px}
+
     main{display:grid;grid-template-columns:1fr 360px;gap:22px;margin-top:26px}
 
-    /* Left column content */
     .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:var(--card-radius);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
     section + section{margin-top:14px}
     h2{margin:0 0 8px 0;font-size:18px}
     .muted{color:var(--muted);font-size:14px}
 
-    /* Experience */
     .job{margin-bottom:12px}
     .job-title{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
     .job-title h3{margin:0;font-size:16px}
@@ -77,7 +83,6 @@
     ul.responsibilities{margin:10px 0 0 18px}
     ul.responsibilities li{margin-bottom:8px}
 
-    /* Right column */
     aside{position:sticky;top:28px}
     .skills-grid{display:grid;gap:10px}
     .skill{display:flex;flex-direction:column;gap:6px}
@@ -85,26 +90,49 @@
     .skill .fill{height:100%;border-radius:8px;width:60%;background:linear-gradient(90deg,var(--accent),#60a5fa);transition:width .7s ease}
     .tag{display:inline-block;background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
 
-    /* Projects (if present) */
     .projects{display:grid;gap:12px}
     .project{padding:12px;border-radius:12px;background:rgba(255,255,255,0.02);transition:transform .18s ease,box-shadow .18s ease}
     .project:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(2,6,23,0.6)}
 
-    /* Footer */
     footer{margin-top:24px;color:var(--muted);font-size:13px;text-align:center}
 
-    /* Buttons */
     .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);cursor:pointer;font-size:14px}
     .btn.primary{background:linear-gradient(90deg,var(--accent),#60a5fa);color:#042024;border:0}
 
-    /* Responsive */
+    /* Mobile responsive adjustments */
     @media (max-width:980px){
-      main{grid-template-columns:1fr}
+      .container{padding:12px;margin:18px auto}
+      header{flex-direction:column;align-items:stretch;gap:14px}
+      .left-header{width:100%;}
+      .header-actions{flex-direction:row;justify-content:space-between;align-items:center;margin-left:0}
+      .avatar{width:96px;height:96px;border-radius:12px}
+      h1{font-size:20px}
+      .sub{font-size:13px}
+
+      /* Collapse layout to single column */
+      main{grid-template-columns:1fr;gap:14px}
       aside{position:relative;top:unset}
-      .avatar{width:96px;height:96px}
+
+      /* Make pills wrap nicely */
+      .contact{gap:8px}
+
+      /* Make nav horizontally scrollable if it overflows */
+      nav{overflow-x:auto;white-space:nowrap;padding-bottom:6px}
+      nav a{flex:0 0 auto}
+
+      /* Reduce card padding on mobile */
+      .card{padding:14px}
     }
 
-    /* Print styles - optimized to reduce page count and unwanted breaks */
+    /* Very small screens */
+    @media (max-width:420px){
+      .avatar{width:72px;height:72px}
+      h1{font-size:18px}
+      .sub{font-size:12px}
+      .pill{padding:6px 8px;font-size:13px}
+      .btn{padding:6px 10px;font-size:13px}
+    }
+
     @media print{
       body{background:white;color:black;font-size:12px;line-height:1.2}
       .container{max-width:1000px;margin:0;padding:6mm}
@@ -112,65 +140,59 @@
       .card{background:transparent;box-shadow:none;border-radius:0;padding:6px}
       main{grid-template-columns:1fr;gap:6px}
       aside{position:static}
-
-      /* Reduce spacing and font sizes in printed output */
       h1{font-size:18px}
       h2{font-size:14px}
       h3{font-size:12px}
       p, li, .muted{font-size:11px;color:#222}
-
-      /* Avoid page breaks inside important blocks */
       .card, .job, .project{page-break-inside:avoid;break-inside:avoid}
-
-      /* Make header compact */
       .avatar{width:44px;height:44px;font-size:12px}
       header{align-items:flex-start;gap:10px}
-
-      /* Hide decorative elements */
       .pill{display:none}
       footer{display:none}
-
       @page{margin:var(--print-margin)}
     }
 
-    /* small accessibility/touch targets */
     a:focus{outline:3px solid rgba(45,212,191,0.18);outline-offset:2px}
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <div class="avatar" aria-hidden="true">
-        <img src="ProfilePicTushar.jpeg" alt="TS" />
-      </div>
-      <div class="intro">
-        <h1>Tushar Srivastava</h1>
-        <div class="sub">Lead Software Engineer — Full-stack, Microservices & Generative AI</div>
-
-        <div class="contact" style="margin-top:12px">
-          <div class="pill">Gurugram, India</div>
-          <div class="pill"><a href="mailTo:tshrsrvstv@gmail.com"></a>tshrsrvstv@gmail.com</div>
-          <div class="pill">+91 · 8840376599</div>
-          <div class="pill"><a href="https://www.linkedin.com/in/tushar-srivastava-1bb1b1a2/">LinkedIn</a></div>
+      <div class="left-header">
+        <div class="avatar" aria-hidden="true">
+          <!-- local uploaded image path used here -->
+          <img src="ProfilePicTushar.jpeg" alt="TS" />
         </div>
 
-        <nav style="margin-top:14px">
-          <a href="#about">About</a>
-          <a href="#experience">Experience</a>
-          <a href="#skills">Skills</a>
-          <a href="#education">Education</a>
-        </nav>
+        <div class="intro">
+          <h1>Tushar Srivastava</h1>
+          <div class="sub">Lead Software Engineer — Full-stack, Microservices & Generative AI</div>
+
+          <div class="contact" style="margin-top:12px">
+            <div class="pill">Gurugram, India</div>
+            <div class="pill"><a href="mailto:tshrsrvstv@gmail.com" style="color:var(--muted);text-decoration:none">tshrsrvstv@gmail.com</a></div>
+            <div class="pill"><a href="tel:+918840376599" style="color:var(--muted);text-decoration:none">(+91) 8840376599</a></div>
+            <div class="pill"><a href="https://www.linkedin.com/in/tushar-srivastava-1bb1b1a2/" style="color:var(--muted);text-decoration:none">LinkedIn</a></div>
+          </div>
+
+          <nav style="margin-top:14px" aria-label="Page sections">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#education">Education</a>
+          </nav>
+        </div>
       </div>
 
-      <div style="display:flex;flex-direction:column;gap:10px;margin-left:14px">
-        <button class="btn" onclick="window.print()">Print / Download PDF</button>
+      <div class="header-actions">
+        <div class="row">
+          <button class="btn" onclick="window.print()">Print / Download PDF</button>
+        </div>
       </div>
     </header>
 
     <main>
-      <!-- LEFT COLUMN -->
       <div>
-        <!-- About / Professional summary -->
         <section id="about" class="card" aria-labelledby="about-heading">
           <h2 id="about-heading">Professional Summary</h2>
           <p class="muted" style="margin-top:8px">Experienced lead software engineer with 10+ years of experience building and scaling web platforms, microservices and data-driven systems. I blend strong backend fundamentals (Java, Spring Boot, microservices) with modern frontend frameworks (React, Next.js) and a growing specialization in generative AI and recommendation systems. I enjoy mentoring teams, driving technical design, and shipping production-grade software that balances performance, reliability and developer ergonomics.</p>
@@ -184,7 +206,6 @@
           </ul>
         </section>
 
-        <!-- Experience -->
         <section id="experience" class="card" aria-labelledby="exp-heading">
           <h2 id="exp-heading">Experience</h2>
 
@@ -242,10 +263,6 @@
 
         </section>
 
-        <!-- Projects -->
-        
-
-        <!-- Education -->
         <section id="education" class="card" aria-labelledby="edu-heading">
   <h2 id="edu-heading">Education</h2>
   <div style="margin-top:8px">
@@ -254,11 +271,9 @@
   </div>
           <div style="margin-top:8px">
     <strong>PGCP — Artificial Intelligence and Machine Learning </strong>
-    <div class="muted">BITs Hyderabad — 2020</div>
+    <div class="muted">BITs, Hyderabad — 2020</div>
   </div>
-          
 
-  <!-- Achievements -->
   <div style="margin-top:14px">
     <h3>Achievements</h3>
     <ul class="responsibilities" style="margin-top:8px">
@@ -271,7 +286,6 @@
 
       </div>
 
-      <!-- RIGHT COLUMN (aside) -->
       <aside>
         <div class="card">
           <h2 id="skills">Skills</h2>
@@ -320,10 +334,8 @@
     </footer>
   </div>
 
-  <!-- Smooth scroll behavior -->
   <script>
     document.documentElement.style.scrollBehavior = 'smooth';
-    // Improve focus for keyboard users when navigating to anchors
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', e=>{
         const id = a.getAttribute('href').slice(1);
