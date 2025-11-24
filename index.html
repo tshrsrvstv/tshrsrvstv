@@ -1,0 +1,332 @@
+<!doctype html>
+<!--
+  Tushar Srivastava - Modern CV Website (single-file)
+  - Responsive, print-friendly, semantic HTML
+  - Embedded CSS (no external deps except Google Fonts)
+  - Smooth scrolling, accessible, easy to customize
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tushar Srivastava — Lead Software Engineer</title>
+
+  <!-- Google Font (external dependency is optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================
+       Base / Reset
+       ========================== */
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#2dd4bf;
+      --glass: rgba(255,255,255,0.03);
+      --card-radius:14px;
+      --max-width:1100px;
+      --print-margin:8mm;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg,#071022 0%, #071827 60%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      color:#e6eef6;
+      line-height:1.45;
+      font-size:15px;
+    }
+
+    /* Layout */
+    .container{max-width:var(--max-width);margin:28px auto;padding:18px}
+    header{display:flex;gap:20px;align-items:center}
+
+    .avatar{width:120px;height:120px;border-radius:18px;background:linear-gradient(135deg,#123 0%, #234 100%);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:28px;color:var(--card);box-shadow:0 6px 24px rgba(0,0,0,0.6)}
+
+    .intro{flex:1}
+    h1{margin:0;font-size:28px;letter-spacing:-0.2px}
+    .sub{color:var(--muted);margin-top:6px}
+
+    .contact{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
+    .pill{background:var(--glass);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:600;font-size:14px}
+
+    nav{display:flex;gap:12px;margin-top:18px}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
+    nav a:hover{color:var(--accent);background:rgba(45,212,191,0.06)}
+
+    main{display:grid;grid-template-columns:1fr 360px;gap:22px;margin-top:26px}
+
+    /* Left column content */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:var(--card-radius);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    section + section{margin-top:14px}
+    h2{margin:0 0 8px 0;font-size:18px}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* Experience */
+    .job{margin-bottom:12px}
+    .job-title{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .job-title h3{margin:0;font-size:16px}
+    .job-meta{color:var(--muted);font-size:13px}
+    ul.responsibilities{margin:10px 0 0 18px}
+    ul.responsibilities li{margin-bottom:8px}
+
+    /* Right column */
+    aside{position:sticky;top:28px}
+    .skills-grid{display:grid;gap:10px}
+    .skill{display:flex;flex-direction:column;gap:6px}
+    .skill .bar{height:10px;background:rgba(255,255,255,0.06);border-radius:8px;overflow:hidden}
+    .skill .fill{height:100%;border-radius:8px;width:60%;background:linear-gradient(90deg,var(--accent),#60a5fa);transition:width .7s ease}
+    .tag{display:inline-block;background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
+
+    /* Projects (if present) */
+    .projects{display:grid;gap:12px}
+    .project{padding:12px;border-radius:12px;background:rgba(255,255,255,0.02);transition:transform .18s ease,box-shadow .18s ease}
+    .project:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(2,6,23,0.6)}
+
+    /* Footer */
+    footer{margin-top:24px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);cursor:pointer;font-size:14px}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#60a5fa);color:#042024;border:0}
+
+    /* Responsive */
+    @media (max-width:980px){
+      main{grid-template-columns:1fr}
+      aside{position:relative;top:unset}
+      .avatar{width:96px;height:96px}
+    }
+
+    /* Print styles - optimized to reduce page count and unwanted breaks */
+    @media print{
+      body{background:white;color:black;font-size:12px;line-height:1.2}
+      .container{max-width:1000px;margin:0;padding:6mm}
+      header nav, .btn, .contact{display:none}
+      .card{background:transparent;box-shadow:none;border-radius:0;padding:6px}
+      main{grid-template-columns:1fr;gap:6px}
+      aside{position:static}
+
+      /* Reduce spacing and font sizes in printed output */
+      h1{font-size:18px}
+      h2{font-size:14px}
+      h3{font-size:12px}
+      p, li, .muted{font-size:11px;color:#222}
+
+      /* Avoid page breaks inside important blocks */
+      .card, .job, .project{page-break-inside:avoid;break-inside:avoid}
+
+      /* Make header compact */
+      .avatar{width:44px;height:44px;font-size:12px}
+      header{align-items:flex-start;gap:10px}
+
+      /* Hide decorative elements */
+      .pill{display:none}
+      footer{display:none}
+
+      @page{margin:var(--print-margin)}
+    }
+
+    /* small accessibility/touch targets */
+    a:focus{outline:3px solid rgba(45,212,191,0.18);outline-offset:2px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="avatar" aria-hidden="true">TS</div>
+      <div class="intro">
+        <h1>Tushar Srivastava</h1>
+        <div class="sub">Lead Software Engineer — Full-stack, Microservices & Generative AI</div>
+
+        <div class="contact" style="margin-top:12px">
+          <div class="pill">Gurugram, India</div>
+          <div class="pill">tushar.srivastava@email.com</div>
+          <div class="pill">+91 · 8840376599</div>
+          <div class="pill">linkedin.com/in/tushar-srivastava</div>
+        </div>
+
+        <nav style="margin-top:14px">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#education">Education</a>
+        </nav>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;margin-left:14px">
+        <button class="btn" onclick="window.print()">Print / Download PDF</button>
+        <a class="btn primary" href="#projects">View Projects</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- LEFT COLUMN -->
+      <div>
+        <!-- About / Professional summary -->
+        <section id="about" class="card" aria-labelledby="about-heading">
+          <h2 id="about-heading">Professional Summary</h2>
+          <p class="muted" style="margin-top:8px">Experienced lead software engineer with 9+ years of experience building and scaling web platforms, microservices and data-driven systems. I blend strong backend fundamentals (Java, Spring Boot, microservices) with modern frontend frameworks (React, Next.js) and a growing specialization in generative AI and recommendation systems. I enjoy mentoring teams, driving technical design, and shipping production-grade software that balances performance, reliability and developer ergonomics.</p>
+
+          <h3 style="margin-top:12px">Selected highlights</h3>
+          <ul class="responsibilities">
+            <li>Led development of a SaaS webinar product that achieved an ACV of $1M within 3 months of launch.</li>
+            <li>Designed and productionized integrations with OpenAI Chat Completions endpoints, including API gateway patterns for rate-limiting and request throttling across downstream microservices.</li>
+            <li>Built production prompt frameworks for attendee ice-breaker messages and automated chatbot responses using pre-trained LLMs.</li>
+            <li>Developed Databricks-based pipelines and Delta Lake frameworks to generate attendee interest embeddings, enabling the Recommendation / Interest Engine and providing a productionizable infra for data scientists.</li>
+          </ul>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience" class="card" aria-labelledby="exp-heading">
+          <h2 id="exp-heading">Experience</h2>
+
+          <div class="job">
+            <div class="job-title">
+              <div>
+                <h3>Lead Software Engineer — Cvent, Gurugram</h3>
+                <div class="job-meta">December 2020 – Present</div>
+              </div>
+              <div class="job-meta">IC Lead · Backend & Frontend · Cloud</div>
+            </div>
+
+            <ul class="responsibilities">
+              <li>Implemented Inbound Single Sign-On for a legacy conference platform using Spring Security and Spring Boot; built an AWS Lambda acting as a proxy gateway between identity providers and the application.</li>
+              <li>Built a new Webinar SaaS product from scratch (microservices + micro-frontends) — contributed backend services, frontend microapps (React, Next.js, GraphQL) and achieved an ACV of $1M within the first three months after launch.</li>
+              <li>Designed and implemented integrations with the OpenAI Chat Completions API: architected an API gateway for throttling and rate-limit controls; ensured resilient retries, circuit breakers and observability for downstream microservices.</li>
+              <li>Productionized prompts and prompt-handling frameworks used for attendee ice-breaker messages and automated chatbot responses powered by pre-trained LLMs.</li>
+              <li>Led development of the Interest Engine: designed Databricks pipelines to generate interest embeddings, normalize and reduce similar interest terms, and built Delta Lake–backed frameworks that enable data scientists to productionize pipelines using PySpark and Delta tables.</li>
+              <li>Developed numerous microservices integrated with core Cvent systems using Dropwizard, Java 17, RabbitMQ, Couchbase and MS SQL Server; promoted best practices through code review, design sessions and grooming meetings.</li>
+              <li>Created micro-templates for webinars (branding, registration, surveys, privacy/cookie notifications) to support configurable and compliant event experiences.</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <div class="job-title">
+              <div>
+                <h3>Senior Engineer — Hughes Systique, Gurugram</h3>
+                <div class="job-meta">January 2019 – December 2020</div>
+              </div>
+              <div class="job-meta">Full‑stack · Edge & Cloud</div>
+            </div>
+
+            <ul class="responsibilities">
+              <li>Worked on Carnival MedallionNet — a captive network portal enabling onboard internet and subscription services using React, Spring Boot, RabbitMQ, MariaDB and MongoDB.</li>
+              <li>Modernized a legacy application (HNS Tools) to Java 8 + Spring Boot and React; designed ML integration workflows and developed time-series forecasting models using Facebook Prophet and scikit-learn.</li>
+              <li>Delivered firmware-facing and backend components for OneWeb ISM as a solo contributor using React, Node, Express and Spring schedulers.</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <div class="job-title">
+              <div>
+                <h3>System Engineer — Tata Consultancy Services (TCS), Lucknow</h3>
+                <div class="job-meta">November 2015 – January 2019</div>
+              </div>
+              <div class="job-meta">Agile Full‑stack Developer</div>
+            </div>
+
+            <ul class="responsibilities">
+              <li>Contributed to the Global Recruitment System (EP hiring across 44 countries) building responsive frontends with AngularJS / React and designing REST APIs with Java, Spring MVC and Hibernate.</li>
+              <li>Worked on service-oriented architecture components using Spring Cloud (Eureka, Zuul), JMS for messaging, Lucene Solr for indexing and PL/SQL for database optimizations.</li>
+              <li>Participated in DevOps automation and CI/CD pipeline design to improve deployment reliability and developer productivity.</li>
+            </ul>
+          </div>
+
+        </section>
+
+        <!-- Projects -->
+        
+
+        <!-- Education -->
+        <section id="education" class="card" aria-labelledby="edu-heading">
+  <h2 id="edu-heading">Education</h2>
+  <div style="margin-top:8px">
+    <strong>Bachelor of Technology — Computer Science</strong>
+    <div class="muted">University Name — Year</div>
+  </div>
+
+  <!-- Achievements -->
+  <div style="margin-top:14px">
+    <h3>Achievements</h3>
+    <ul class="responsibilities" style="margin-top:8px">
+      <li>New Comer of the Year — Cvent (2020)</li>
+      <li>Quarterly Award — Cvent (2021)</li>
+      <li>Multiple "Pat on Back" awards for exemplary contributions at Cvent.</li>
+    </ul>
+  </div>
+</section>
+
+      </div>
+
+      <!-- RIGHT COLUMN (aside) -->
+      <aside>
+        <div class="card">
+          <h2 id="skills">Skills</h2>
+          <p class="muted">Technical skills and domains with emphasis on Generative AI & Recommendation Systems.</p>
+
+          <div class="skills-grid" style="margin-top:12px">
+            <div class="skill"><div style="display:flex;justify-content:space-between;font-weight:700"><span>Java · Spring Boot</span><span class="muted">Expert</span></div><div class="bar"><div class="fill" style="width:92%"></div></div></div>
+            <div class="skill"><div style="display:flex;justify-content:space-between;font-weight:700"><span>Microservices · Architecture</span><span class="muted">Expert</span></div><div class="bar"><div class="fill" style="width:86%"></div></div></div>
+            <div class="skill"><div style="display:flex;justify-content:space-between;font-weight:700"><span>React · Next.js · Frontend</span><span class="muted">Advanced</span></div><div class="bar"><div class="fill" style="width:78%"></div></div></div>
+            <div class="skill"><div style="display:flex;justify-content:space-between;font-weight:700"><span>Generative AI · Prompt Design</span><span class="muted">Advanced</span></div><div class="bar"><div class="fill" style="width:74%"></div></div></div>
+            <div class="skill"><div style="display:flex;justify-content:space-between;font-weight:700"><span>Databricks · PySpark · Delta Lake</span><span class="muted">Advanced</span></div><div class="bar"><div class="fill" style="width:72%"></div></div></div>
+            <div class="skill"><div style="display:flex;justify-content:space-between;font-weight:700"><span>Databases · Couchbase · Mongo · SQL</span><span class="muted">Advanced</span></div><div class="bar"><div class="fill" style="width:68%"></div></div></div>
+          </div>
+
+          <h3 style="margin-top:14px">Expertise & Tags</h3>
+          <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px">
+            <span class="tag">Microservices</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">Java 17</span>
+            <span class="tag">React</span>
+            <span class="tag">GraphQL</span>
+            <span class="tag">Databricks</span>
+            <span class="tag">Delta Lake</span>
+            <span class="tag">Prompt Design</span>
+            <span class="tag">Generative AI</span>
+            <span class="tag">Recommendation Systems</span>
+            <span class="tag">Docker</span>
+            <span class="tag">CI/CD</span>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <h2>Contact & Availability</h2>
+          <p class="muted">Available for senior/lead engineering roles, technical advisory and consulting. Open to remote or hybrid engagements.</p>
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+            <a class="btn" href="mailto:tushar.srivastava@email.com">Email</a>
+            <a class="btn" href="#contact">Connect</a>
+          </div>
+        </div>
+
+      </aside>
+    </main>
+
+    <footer>
+      <div class="muted">This CV site is generated as a single-file HTML. Customize content and styles in the <code>&lt;main&gt;</code> sections. • Built for printing and online sharing.</div>
+    </footer>
+  </div>
+
+  <!-- Smooth scroll behavior -->
+  <script>
+    document.documentElement.style.scrollBehavior = 'smooth';
+    // Improve focus for keyboard users when navigating to anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){
+          el.setAttribute('tabindex','-1');
+          el.focus();
+        }
+      })
+    })
+  </script>
+</body>
+</html>
