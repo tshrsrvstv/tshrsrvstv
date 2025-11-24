@@ -46,7 +46,9 @@
     .container{max-width:var(--max-width);margin:28px auto;padding:18px}
     header{display:flex;gap:20px;align-items:center}
 
-    .avatar{width:120px;height:120px;border-radius:18px;background:linear-gradient(135deg,#123 0%, #234 100%);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:28px;color:var(--card);box-shadow:0 6px 24px rgba(0,0,0,0.6)}
+    .avatar{width:120px;height:120px;border-radius:18px;background:linear-gradient(135deg,#123 0%, #234 100%);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:28px;color:var(--card);box-shadow:0 6px 24px rgba(0,0,0,0.6); overflow: hidden;}
+
+    .avatar img {height: 100%; width: 100% object-fit: contain;}
 
     .intro{flex:1}
     h1{margin:0;font-size:28px;letter-spacing:-0.2px}
