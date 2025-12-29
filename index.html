@@ -36,10 +36,20 @@
 
     .container{max-width:var(--max-width);margin:28px auto;padding:18px}
 
+    /* HEADER */
     header{
       display:flex;
+      justify-content:space-between;
       gap:18px;
       align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .left-header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      min-width:0;
     }
 
     .avatar{
@@ -68,6 +78,26 @@
       color:var(--muted);
     }
 
+    .header-actions{
+      display:flex;
+      gap:10px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:10px;
+      background:linear-gradient(90deg,var(--accent),#60a5fa);
+      color:#042024;
+      border:0;
+      cursor:pointer;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    /* LAYOUT */
     main{
       display:grid;
       grid-template-columns:1fr 340px;
@@ -92,14 +122,17 @@
 
     aside{position:sticky;top:24px}
 
+    /* RESPONSIVE */
     @media (max-width:980px){
       main{grid-template-columns:1fr}
       aside{position:static}
+      header{flex-direction:column;align-items:flex-start}
     }
 
+    /* PRINT / PDF */
     @media print{
       body{background:white;color:black;font-size:12px}
-      .pill, aside{display:none}
+      .pill,.btn,aside{display:none}
       main{grid-template-columns:1fr}
       .card{box-shadow:none;background:transparent}
       @page{margin:var(--print-margin)}
@@ -112,18 +145,25 @@
 
   <!-- HEADER -->
   <header>
-    <div class="avatar">
-      <img src="ProfilePicTushar.jpeg" alt="Tushar Srivastava" />
-    </div>
-    <div>
-      <h1>Tushar Srivastava</h1>
-      <div class="sub">Lead Software Engineer · Backend & Distributed Systems · Applied GenAI</div>
-      <div class="contact">
-        <span class="pill">Gurugram, India</span>
-        <span class="pill">tshrsrvstv@gmail.com</span>
-        <span class="pill">+91 8840376599</span>
-        <span class="pill">LinkedIn</span>
+    <div class="left-header">
+      <div class="avatar">
+        <img src="ProfilePicTushar.jpeg" alt="Tushar Srivastava" />
       </div>
+      <div>
+        <h1>Tushar Srivastava</h1>
+        <div class="sub">Lead Software Engineer · Backend & Distributed Systems · Applied GenAI</div>
+        <div class="contact">
+          <span class="pill">Gurugram, India</span>
+          <span class="pill">tshrsrvstv@gmail.com</span>
+          <span class="pill">+91 8840376599</span>
+          <span class="pill">LinkedIn</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOWNLOAD / PRINT -->
+    <div class="header-actions">
+      <button class="btn" onclick="window.print()">Download / Print Resume</button>
     </div>
   </header>
 
@@ -132,7 +172,6 @@
     <!-- LEFT COLUMN -->
     <div>
 
-      <!-- SYSTEMS & SCALE -->
       <section class="card">
         <h2>Systems & Scale</h2>
         <ul>
@@ -146,7 +185,6 @@
         </ul>
       </section>
 
-      <!-- SUMMARY -->
       <section class="card">
         <h2>Professional Summary</h2>
         <p class="muted">
@@ -157,7 +195,6 @@
         </p>
       </section>
 
-      <!-- EXPERIENCE -->
       <section class="card">
         <h2>Experience</h2>
 
@@ -166,28 +203,26 @@
           <li>Built a Webinar SaaS product from scratch supporting <strong>hundreds–thousands of concurrent attendees</strong>, achieving <strong>$1M ACV within 3 months</strong>.</li>
           <li>Designed and developed <strong>15+ microservices</strong> using Java 17, Spring Boot, Dropwizard, RabbitMQ, Couchbase, and SQL, handling <strong>millions of requests/day</strong>.</li>
           <li>Implemented Inbound SSO using Spring Security and an AWS Lambda–based identity proxy gateway.</li>
-          <li>Productionized GenAI features using OpenAI APIs with rate limiting, retries, and circuit breakers, processing <strong>thousands of AI requests/day</strong>.</li>
-          <li>Designed Databricks + Delta Lake pipelines processing <strong>millions of records</strong> for a production recommendation engine.</li>
+          <li>Productionized GenAI features using OpenAI APIs with rate limiting, retries, and circuit breakers.</li>
+          <li>Designed Databricks + Delta Lake pipelines processing <strong>millions of records</strong>.</li>
           <li>Led technical delivery for a team of <strong>5–8 engineers</strong>, reducing production incidents by <strong>~30–40%</strong>.</li>
         </ul>
 
         <h3>Senior Software Engineer — Hughes Systique (Jan 2019 – Dec 2020)</h3>
         <ul>
-          <li>Built backend and frontend systems for Carnival MedallionNet, supporting <strong>thousands of concurrent onboard users per ship</strong>.</li>
-          <li>Modernized legacy platforms to Java 8 + Spring Boot + React, reducing feature delivery time by <strong>~30–40%</strong>.</li>
-          <li>Designed ML forecasting workflows using Facebook Prophet and scikit-learn.</li>
-          <li>Delivered firmware-facing backend services for OneWeb ISM as a solo contributor.</li>
+          <li>Built systems for Carnival MedallionNet supporting <strong>thousands of concurrent onboard users per ship</strong>.</li>
+          <li>Modernized legacy platforms to Java 8 + Spring Boot + React, reducing delivery time by <strong>~30–40%</strong>.</li>
+          <li>Built ML forecasting workflows using Facebook Prophet and scikit-learn.</li>
         </ul>
 
-        <h3>System Engineer — Tata Consultancy Services (Nov 2015 – Jan 2019)</h3>
+        <h3>System Engineer — TCS (Nov 2015 – Jan 2019)</h3>
         <ul>
           <li>Built enterprise recruitment systems supporting hiring across <strong>40+ countries</strong>.</li>
           <li>Implemented REST APIs, Spring Cloud microservices, JMS messaging, and Solr-based search.</li>
-          <li>Contributed to CI/CD automation and Agile delivery across multiple releases.</li>
+          <li>Contributed to CI/CD automation and Agile delivery.</li>
         </ul>
       </section>
 
-      <!-- EDUCATION -->
       <section class="card">
         <h2>Education & Awards</h2>
         <ul>
