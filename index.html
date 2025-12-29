@@ -1,15 +1,14 @@
 <!doctype html>
 <!--
-  Tushar Srivastava — Lead Software Engineer
-  FAANG-style, metrics-driven, single-file HTML resume
+  Tushar Srivastava — Staff Software Engineer (ATS Optimized)
 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tushar Srivastava — Lead Software Engineer</title>
+  <title>Tushar Srivastava — Staff Software Engineer</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -17,11 +16,10 @@
       --card:#0b1220;
       --muted:#9aa4b2;
       --accent:#2dd4bf;
-      --glass: rgba(255,255,255,0.03);
-      --radius:14px;
+      --glass:rgba(255,255,255,0.03);
+      --radius:12px;
       --max-width:1100px;
       --print-margin:8mm;
-      color-scheme: dark;
     }
 
     *{box-sizing:border-box}
@@ -39,35 +37,27 @@
     header{
       display:flex;
       justify-content:space-between;
-      gap:18px;
       align-items:center;
+      gap:16px;
       flex-wrap:wrap;
     }
 
-    .left-header{
+    .left{
       display:flex;
       gap:16px;
       align-items:center;
-      min-width:0;
     }
 
     .avatar{
-      width:96px;height:96px;
-      border-radius:16px;
-      overflow:hidden;
-      flex-shrink:0;
-      background:#111;
+      width:90px;height:90px;border-radius:14px;overflow:hidden;
     }
     .avatar img{width:100%;height:100%;object-fit:cover}
 
     h1{margin:0;font-size:26px}
-    .sub{color:var(--muted);margin-top:6px}
+    .subtitle{color:var(--muted);margin-top:6px}
 
     .contact{
-      display:flex;
-      gap:10px;
-      margin-top:10px;
-      flex-wrap:wrap;
+      display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;
     }
     .pill{
       background:var(--glass);
@@ -77,23 +67,14 @@
       color:var(--muted);
     }
 
-    .header-actions{
-      display:flex;
-      gap:10px;
-    }
-
     .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
       padding:8px 14px;
       border-radius:10px;
       background:linear-gradient(90deg,var(--accent),#60a5fa);
-      color:#042024;
       border:0;
-      cursor:pointer;
       font-weight:700;
-      font-size:14px;
+      cursor:pointer;
+      color:#042024;
     }
 
     main{
@@ -107,12 +88,10 @@
       background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
       padding:18px;
       border-radius:var(--radius);
-      box-shadow:0 8px 30px rgba(2,6,23,0.6);
     }
 
-    section + section{margin-top:14px}
-    h2{margin:0 0 10px 0;font-size:18px}
-    h3{margin:12px 0 4px 0;font-size:15px}
+    h2{margin:0 0 10px;font-size:18px}
+    h3{margin:12px 0 6px;font-size:15px}
     .muted{color:var(--muted);font-size:14px}
 
     ul{margin:8px 0 0 18px}
@@ -120,29 +99,25 @@
 
     aside{position:sticky;top:24px}
 
-    .skill-group{margin-bottom:12px}
-    .skill-group strong{display:block;margin-bottom:6px}
+    .skill-group{margin-bottom:14px}
     .tags{display:flex;flex-wrap:wrap;gap:8px}
     .tag{
-      background:rgba(255,255,255,0.04);
+      background:rgba(255,255,255,0.05);
       padding:6px 10px;
       border-radius:999px;
       font-size:13px;
       color:var(--muted);
     }
 
-    @media (max-width:980px){
+    @media(max-width:980px){
       main{grid-template-columns:1fr}
       aside{position:static}
-      header{flex-direction:column;align-items:flex-start}
     }
 
     @media print{
       body{background:white;color:black;font-size:12px}
-      .pill,.btn{display:none}
+      .btn,.pill{display:none}
       main{grid-template-columns:1fr}
-      .card{box-shadow:none;background:transparent}
-      aside{position:static}
       @page{margin:var(--print-margin)}
     }
   </style>
@@ -151,160 +126,178 @@
 <body>
 <div class="container">
 
-  <!-- HEADER -->
-  <header>
-    <div class="left-header">
-      <div class="avatar">
-        <img src="ProfilePicTushar.jpeg" alt="Tushar Srivastava" />
-      </div>
-      <div>
-        <h1>Tushar Srivastava</h1>
-        <div class="sub">Lead Software Engineer · Backend & Distributed Systems · Applied GenAI</div>
-        <div class="contact">
-          <span class="pill">Gurugram, India</span>
-          <span class="pill">tshrsrvstv@gmail.com</span>
-          <span class="pill">+91 8840376599</span>
-          <span class="pill">LinkedIn</span>
-        </div>
-      </div>
+<header>
+  <div class="left">
+    <div class="avatar">
+      <img src="ProfilePicTushar.jpeg" alt="Tushar Srivastava">
     </div>
-
-    <div class="header-actions">
-      <button class="btn" onclick="window.print()">Download / Print Resume</button>
-    </div>
-  </header>
-
-  <main>
-
-    <!-- LEFT COLUMN -->
     <div>
+      <h1>Tushar Srivastava</h1>
+      <div class="subtitle">
+        Staff Software Engineer · Distributed Systems · Backend Architecture · Applied AI
+      </div>
+      <div class="contact">
+        <span class="pill">Gurugram, India</span>
+        <span class="pill">tshrsrvstv@gmail.com</span>
+        <span class="pill">+91 8840376599</span>
+        <span class="pill">LinkedIn</span>
+      </div>
+    </div>
+  </div>
+  <button class="btn" onclick="window.print()">Download / Print Resume</button>
+</header>
 
-      <section class="card">
-        <h2>Systems & Scale</h2>
-        <ul>
-          <li>10+ years building SaaS platforms and distributed systems</li>
-          <li>Microservices handling <strong>hundreds of thousands to millions of API requests/day</strong></li>
-          <li>Webinar platforms supporting <strong>hundreds–thousands of concurrent users per event</strong></li>
-          <li>Designed and operated <strong>15+ production microservices</strong></li>
-          <li>Databricks pipelines processing <strong>millions of records</strong></li>
-          <li>Production GenAI services handling <strong>thousands of requests/day</strong></li>
-          <li>Delivered a product reaching <strong>$1M ACV within 3 months</strong></li>
-        </ul>
-      </section>
+<main>
 
-      <section class="card">
-        <h2>Professional Summary</h2>
-        <p class="muted">
-          Lead Software Engineer with 10+ years of experience designing and scaling SaaS platforms and
-          distributed systems. Strong background in Java-based microservices, data pipelines, and applied
-          Generative AI, with a proven track record of delivering revenue-impacting products and leading
-          teams from design to production.
-        </p>
-      </section>
+<!-- MAIN -->
+<div>
 
-      <section class="card">
-        <h2>Experience</h2>
+<section class="card">
+  <h2>Professional Summary</h2>
+  <p class="muted">
+    Staff Software Engineer with 10+ years of experience designing, building, and scaling
+    distributed systems and SaaS platforms. Proven expertise in backend architecture,
+    microservices, cloud-native systems, data platforms, and applied Generative AI.
+    Strong track record of technical leadership, cross-team collaboration, system design,
+    and delivering business-critical, high-scale solutions.
+  </p>
+</section>
 
-        <h3>Lead Software Engineer — Cvent (Dec 2020 – Present)</h3>
-        <ul>
-          <li>Built a Webinar SaaS product from scratch supporting <strong>hundreds–thousands of concurrent attendees</strong>, achieving <strong>$1M ACV within 3 months</strong>.</li>
-          <li>Designed and developed <strong>15+ microservices</strong> using Java 17, Spring Boot, Dropwizard, RabbitMQ, Couchbase, and SQL, handling <strong>millions of requests/day</strong>.</li>
-          <li>Implemented Inbound SSO using Spring Security and an AWS Lambda–based identity proxy gateway.</li>
-          <li>Productionized GenAI features using OpenAI APIs with rate limiting, retries, and circuit breakers.</li>
-          <li>Designed Databricks + Delta Lake pipelines processing <strong>millions of records</strong>.</li>
-          <li>Led technical delivery for a team of <strong>5–8 engineers</strong>, reducing production incidents by <strong>~30–40%</strong>.</li>
-        </ul>
+<section class="card">
+  <h2>Systems, Scale & Impact</h2>
+  <ul>
+    <li>Designed and operated distributed systems handling <strong>millions of API requests per day</strong></li>
+    <li>Architected <strong>15+ microservices</strong> with high availability, fault tolerance, and observability</li>
+    <li>Supported <strong>hundreds to thousands of concurrent users</strong> per event on SaaS platforms</li>
+    <li>Built data pipelines processing <strong>millions of records</strong> using Databricks and Delta Lake</li>
+    <li>Productionized Generative AI services handling <strong>thousands of requests per day</strong></li>
+    <li>Delivered a revenue-impacting product achieving <strong>$1M ACV within 3 months</strong></li>
+  </ul>
+</section>
 
-        <h3>Senior Software Engineer — Hughes Systique (Jan 2019 – Dec 2020)</h3>
-        <ul>
-          <li>Built systems for Carnival MedallionNet supporting <strong>thousands of concurrent onboard users per ship</strong>.</li>
-          <li>Modernized legacy platforms to Java 8 + Spring Boot + React, reducing delivery time by <strong>~30–40%</strong>.</li>
-          <li>Built ML forecasting workflows using Facebook Prophet and scikit-learn.</li>
-        </ul>
+<section class="card">
+  <h2>Experience</h2>
 
-        <h3>System Engineer — TCS (Nov 2015 – Jan 2019)</h3>
-        <ul>
-          <li>Built enterprise recruitment systems supporting hiring across <strong>40+ countries</strong>.</li>
-          <li>Implemented REST APIs, Spring Cloud microservices, JMS messaging, and Solr-based search.</li>
-          <li>Contributed to CI/CD automation and Agile delivery.</li>
-        </ul>
-      </section>
+  <h3>Lead / Staff Software Engineer — Cvent (Dec 2020 – Present)</h3>
+  <ul>
+    <li>Architected and delivered a Webinar SaaS platform from inception to production,
+        supporting high concurrency and achieving <strong>$1M ACV within 3 months</strong>.</li>
+    <li>Led system design and development of <strong>15+ backend microservices</strong>
+        using Java 17, Spring Boot, Dropwizard, RabbitMQ, Couchbase, and SQL.</li>
+    <li>Designed cloud-native integrations using AWS Lambda and API Gateway for authentication,
+        authorization, and identity federation.</li>
+    <li>Built and productionized <strong>Generative AI features</strong> using OpenAI APIs,
+        implementing rate limiting, retries, circuit breakers, and cost controls.</li>
+    <li>Architected Databricks-based data pipelines and Delta Lake frameworks to power
+        a production recommendation engine.</li>
+    <li>Provided technical leadership across teams (5–8 engineers), driving architecture
+        decisions, design reviews, and operational excellence.</li>
+    <li>Improved system reliability and availability, reducing production incidents
+        by approximately <strong>30–40%</strong>.</li>
+  </ul>
 
-      <section class="card">
-        <h2>Education & Awards</h2>
-        <ul>
-          <li>B.Tech — Electrical Engineering, NIT Srinagar</li>
-          <li>PGCP — Artificial Intelligence & Machine Learning, BITS Hyderabad</li>
-          <li>New Comer of the Year (Cvent), Quarterly Award (Cvent)</li>
-        </ul>
-      </section>
+  <h3>Senior Software Engineer — Hughes Systique (Jan 2019 – Dec 2020)</h3>
+  <ul>
+    <li>Built and scaled backend and frontend systems for Carnival MedallionNet,
+        supporting thousands of concurrent onboard users.</li>
+    <li>Modernized legacy monoliths to cloud-ready architectures using Java 8,
+        Spring Boot, and React.</li>
+    <li>Developed machine learning workflows and time-series forecasting models
+        using Facebook Prophet and scikit-learn.</li>
+  </ul>
 
+  <h3>Software Engineer — Tata Consultancy Services (Nov 2015 – Jan 2019)</h3>
+  <ul>
+    <li>Developed enterprise recruitment platforms supporting hiring operations
+        across 40+ countries.</li>
+    <li>Implemented REST APIs, Spring Cloud microservices, JMS messaging,
+        and Solr-based search.</li>
+    <li>Contributed to CI/CD pipelines, DevOps automation, and Agile delivery.</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>Education & Certifications</h2>
+  <ul>
+    <li>B.Tech — Electrical Engineering, National Institute of Technology Srinagar</li>
+    <li>PGCP — Artificial Intelligence & Machine Learning, BITS Hyderabad</li>
+  </ul>
+</section>
+
+</div>
+
+<!-- ASIDE -->
+<aside>
+  <div class="card">
+    <h2>Technical Skills</h2>
+
+    <div class="skill-group">
+      <strong>Languages & Frameworks</strong>
+      <div class="tags">
+        <span class="tag">Java</span>
+        <span class="tag">Spring Boot</span>
+        <span class="tag">Dropwizard</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">GraphQL</span>
+      </div>
     </div>
 
-    <!-- RIGHT COLUMN -->
-    <aside>
-      <div class="card">
-        <h2>Skills</h2>
-
-        <div class="skill-group">
-          <strong>Backend & Distributed Systems</strong>
-          <div class="tags">
-            <span class="tag">Java</span>
-            <span class="tag">Spring Boot</span>
-            <span class="tag">Dropwizard</span>
-            <span class="tag">Microservices</span>
-            <span class="tag">REST</span>
-            <span class="tag">GraphQL</span>
-            <span class="tag">RabbitMQ</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <strong>Data & AI</strong>
-          <div class="tags">
-            <span class="tag">Databricks</span>
-            <span class="tag">PySpark</span>
-            <span class="tag">Delta Lake</span>
-            <span class="tag">Generative AI</span>
-            <span class="tag">OpenAI APIs</span>
-            <span class="tag">Recommendation Systems</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <strong>Frontend</strong>
-          <div class="tags">
-            <span class="tag">React</span>
-            <span class="tag">Next.js</span>
-            <span class="tag">Micro-frontends</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <strong>Cloud & DevOps</strong>
-          <div class="tags">
-            <span class="tag">AWS</span>
-            <span class="tag">Lambda</span>
-            <span class="tag">API Gateway</span>
-            <span class="tag">Docker</span>
-            <span class="tag">CI/CD</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <strong>Databases</strong>
-          <div class="tags">
-            <span class="tag">Couchbase</span>
-            <span class="tag">MongoDB</span>
-            <span class="tag">SQL</span>
-          </div>
-        </div>
-
+    <div class="skill-group">
+      <strong>Distributed Systems</strong>
+      <div class="tags">
+        <span class="tag">Microservices</span>
+        <span class="tag">Event-Driven Architecture</span>
+        <span class="tag">Message Queues</span>
+        <span class="tag">RabbitMQ</span>
+        <span class="tag">Resilience Patterns</span>
       </div>
-    </aside>
+    </div>
 
-  </main>
+    <div class="skill-group">
+      <strong>Cloud & DevOps</strong>
+      <div class="tags">
+        <span class="tag">AWS</span>
+        <span class="tag">Lambda</span>
+        <span class="tag">API Gateway</span>
+        <span class="tag">Docker</span>
+        <span class="tag">CI/CD</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <strong>Data & AI</strong>
+      <div class="tags">
+        <span class="tag">Databricks</span>
+        <span class="tag">PySpark</span>
+        <span class="tag">Delta Lake</span>
+        <span class="tag">Generative AI</span>
+        <span class="tag">OpenAI APIs</span>
+        <span class="tag">Recommendation Systems</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <strong>Frontend</strong>
+      <div class="tags">
+        <span class="tag">React</span>
+        <span class="tag">Next.js</span>
+        <span class="tag">Micro-frontends</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <strong>Databases</strong>
+      <div class="tags">
+        <span class="tag">Couchbase</span>
+        <span class="tag">MongoDB</span>
+        <span class="tag">SQL</span>
+      </div>
+    </div>
+
+  </div>
+</aside>
+
+</main>
 </div>
 </body>
 </html>
-
