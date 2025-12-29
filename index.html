@@ -36,7 +36,6 @@
 
     .container{max-width:var(--max-width);margin:28px auto;padding:18px}
 
-    /* HEADER */
     header{
       display:flex;
       justify-content:space-between;
@@ -97,10 +96,9 @@
       font-size:14px;
     }
 
-    /* LAYOUT */
     main{
       display:grid;
-      grid-template-columns:1fr 340px;
+      grid-template-columns:1fr 360px;
       gap:22px;
       margin-top:24px;
     }
@@ -122,19 +120,29 @@
 
     aside{position:sticky;top:24px}
 
-    /* RESPONSIVE */
+    .skill-group{margin-bottom:12px}
+    .skill-group strong{display:block;margin-bottom:6px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px}
+    .tag{
+      background:rgba(255,255,255,0.04);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:13px;
+      color:var(--muted);
+    }
+
     @media (max-width:980px){
       main{grid-template-columns:1fr}
       aside{position:static}
       header{flex-direction:column;align-items:flex-start}
     }
 
-    /* PRINT / PDF */
     @media print{
       body{background:white;color:black;font-size:12px}
-      .pill,.btn,aside{display:none}
+      .pill,.btn{display:none}
       main{grid-template-columns:1fr}
       .card{box-shadow:none;background:transparent}
+      aside{position:static}
       @page{margin:var(--print-margin)}
     }
   </style>
@@ -161,7 +169,6 @@
       </div>
     </div>
 
-    <!-- DOWNLOAD / PRINT -->
     <div class="header-actions">
       <button class="btn" onclick="window.print()">Download / Print Resume</button>
     </div>
@@ -237,15 +244,62 @@
     <!-- RIGHT COLUMN -->
     <aside>
       <div class="card">
-        <h2>Core Skills</h2>
-        <ul>
-          <li>Java, Spring Boot, Dropwizard</li>
-          <li>Distributed Systems, Microservices</li>
-          <li>Databricks, PySpark, Delta Lake</li>
-          <li>Applied Generative AI (OpenAI APIs)</li>
-          <li>AWS, Docker, CI/CD</li>
-          <li>React, Next.js, GraphQL</li>
-        </ul>
+        <h2>Skills</h2>
+
+        <div class="skill-group">
+          <strong>Backend & Distributed Systems</strong>
+          <div class="tags">
+            <span class="tag">Java</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">Dropwizard</span>
+            <span class="tag">Microservices</span>
+            <span class="tag">REST</span>
+            <span class="tag">GraphQL</span>
+            <span class="tag">RabbitMQ</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <strong>Data & AI</strong>
+          <div class="tags">
+            <span class="tag">Databricks</span>
+            <span class="tag">PySpark</span>
+            <span class="tag">Delta Lake</span>
+            <span class="tag">Generative AI</span>
+            <span class="tag">OpenAI APIs</span>
+            <span class="tag">Recommendation Systems</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <strong>Frontend</strong>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Micro-frontends</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <strong>Cloud & DevOps</strong>
+          <div class="tags">
+            <span class="tag">AWS</span>
+            <span class="tag">Lambda</span>
+            <span class="tag">API Gateway</span>
+            <span class="tag">Docker</span>
+            <span class="tag">CI/CD</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <strong>Databases</strong>
+          <div class="tags">
+            <span class="tag">Couchbase</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">SQL</span>
+          </div>
+        </div>
+
       </div>
     </aside>
 
@@ -253,3 +307,4 @@
 </div>
 </body>
 </html>
+
